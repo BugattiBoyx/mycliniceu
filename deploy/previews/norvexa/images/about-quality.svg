@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#001A3A"/>
+      <stop offset="1" stop-color="#003366"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect x="120" y="140" width="560" height="320" rx="20" fill="#fff" opacity="0.06" stroke="#8FD3F4" stroke-width="2"/>
+  <rect x="180" y="200" width="440" height="24" rx="6" fill="#8FD3F4" opacity="0.35"/>
+  <rect x="180" y="250" width="360" height="16" rx="4" fill="#97999B" opacity="0.5"/>
+  <rect x="180" y="290" width="400" height="16" rx="4" fill="#97999B" opacity="0.5"/>
+  <rect x="180" y="330" width="320" height="16" rx="4" fill="#97999B" opacity="0.5"/>
+  <circle cx="620" cy="380" r="36" fill="#8FD3F4" opacity="0.25"/>
+  <path d="M608 380l8 8 16-16" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="400" y="500" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700" fill="#fff" letter-spacing="4">QUALITY ASSURED</text>
+  <text x="400" y="540" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#97999B" letter-spacing="3">HPLC · MASS SPEC · COA</text>
+</svg>

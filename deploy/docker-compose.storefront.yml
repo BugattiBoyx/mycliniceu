@@ -1,0 +1,57 @@
+# Storefront edge: public shops + checkout. Disposable by design.
+#
+# Holds no database and no admin surface. If this server is suspended or its
+# IP is blacklisted, rebuild it elsewhere and repoint DNS — no data is lost.
+#
+#   docker compose -f deploy/docker-compose.storefront.yml --env-file deploy/env/storefront.env up -d --build
+
+name: mosmo-storefront
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_ROOT_DOMAIN: ${NEXT_PUBLIC_ROOT_DOMAIN}
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+    restart: unless-stopped
+    environment:
+      DEPLOYMENT_ROLE: storefront
+      # Never migrate from the edge — the control plane owns the schema.
+      RUN_DB_PUSH: "0"
+      # Points at the control-plane database over the private tunnel, using
+      # the restricted storefront role (see deploy/sql/storefront-role.sql).
+      DATABASE_URL: ${DATABASE_URL}
+      AUTH_SECRET: ${AUTH_SECRET}
+      NEXT_PUBLIC_ROOT_DOMAIN: ${NEXT_PUBLIC_ROOT_DOMAIN}
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - app
+    environment:
+      ACME_EMAIL: ${ACME_EMAIL}
+    volumes:
+      - ./caddy/Caddyfile.storefront:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+      - caddy-logs:/var/log/caddy
+    ports:
+      - "80:80"
+      - "443:443"
+
+volumes:
+  caddy-data:
+  caddy-config:
+  caddy-logs:

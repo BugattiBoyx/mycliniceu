@@ -1,0 +1,48 @@
+/* NORVEXA brand overrides on WoodMart theme */
+body { font-family: Inter, Manrope, system-ui, sans-serif; }
+.whb-general-header { border-bottom: 1px solid rgba(143,211,244,.25); }
+.ppcs-viewall, .ppcs-viewall:hover { color: #fff; }
+.wd-footer { background: #f4f8fb; }
+.color-primary, .amount { color: #001A3A !important; }
+.pp-hero-carousel { border-radius: 14px; overflow: hidden; margin-bottom: 50px; background: #eef6fb; }
+.pp-hero-carousel .pp-hc-slide { opacity: 1 !important; transform: none !important; position: relative !important; display: block !important; }
+.pp-hero-carousel .pp-hc-slide img { width: 100%; height: auto; display: block; }
+.pp-hero-carousel .pp-hc-slide:not(.is-active) { display: none !important; }
+
+/* Top disclaimer bar — sliding light gradient */
+.ppcro-us-topbar {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #001A3A, #00305e, #001A3A) !important;
+}
+.ppcro-us-topbar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(143, 211, 244, 0.14) 30%,
+    rgba(143, 211, 244, 0.5) 50%,
+    rgba(143, 211, 244, 0.14) 70%,
+    transparent 100%
+  );
+  transform: translateX(-110%) skewX(-12deg);
+  animation: norvexa-topbar-shine 3.4s linear infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+@keyframes norvexa-topbar-shine {
+  0% { transform: translateX(-110%) skewX(-12deg); }
+  100% { transform: translateX(340%) skewX(-12deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ppcro-us-topbar::after { animation: none; display: none; }
+}
+
+/* No sticky bottom toolbar on mobile */
+.wd-toolbar { display: none !important; }
+body.sticky-toolbar-on { padding-bottom: 0 !important; }

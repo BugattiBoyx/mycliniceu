@@ -1,0 +1,43 @@
+# Control plane edge — private.
+#
+# Only the dashboard, auth and APIs live here. This hostname must never appear
+# on a storefront, in a customer email, or in DNS for a merchant domain.
+#
+# ADMIN_ALLOWED_IPS restricts the dashboard to known addresses (office IP,
+# VPN exit node). Payment webhooks are exempt, since processors call from
+# addresses you do not control.
+
+{
+	email {$ACME_EMAIL}
+}
+
+{$CONTROL_DOMAIN} {
+	encode zstd gzip
+
+	handle /api/internal/* {
+		respond "Not Found" 404
+	}
+
+	# Payment provider webhooks must always get through.
+	handle /api/webhooks/* {
+		reverse_proxy app:3000
+	}
+
+	@blocked not remote_ip {$ADMIN_ALLOWED_IPS}
+	handle @blocked {
+		respond "Not Found" 404
+	}
+
+	handle {
+		reverse_proxy app:3000 {
+			header_up X-Real-IP {remote_host}
+		}
+	}
+
+	log {
+		output file /var/log/caddy/control.log {
+			roll_size 50MiB
+			roll_keep 10
+		}
+	}
+}

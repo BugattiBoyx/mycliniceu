@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #111111;
+  --ink-soft: #4a5560;
+  --paper: #ffffff;
+  --mist: #f4f7f7;
+  --line: rgba(0, 71, 81, 0.12);
+  --brand: #004751;
+  --brand-deep: #00343b;
+  --brand-soft: #d9e8ea;
+  --accent: #e8f3f4;
+  --sand: #f2ebe3;
+  --background: var(--paper);
+  --foreground: var(--ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-mist: var(--mist);
+  --color-paper: var(--paper);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+  --color-accent: var(--accent);
+  --color-sand: var(--sand);
+  --font-sans: var(--font-figtree);
+  --font-display: var(--font-bricolage);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-figtree), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--brand) 28%, white);
+}
+
+.font-display {
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+}
+
+.section {
+  padding: 4.5rem 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 6.5rem 1.5rem;
+  }
+}
+
+.section-inner {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.eyebrow {
+  color: var(--brand);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: var(--brand);
+  color: white;
+  font-weight: 600;
+  padding: 0.95rem 1.5rem;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--brand-deep);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--brand);
+  color: var(--brand);
+  font-weight: 600;
+  padding: 0.9rem 1.45rem;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-rise-delay-1 {
+  animation: rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.animate-rise-delay-2 {
+  animation: rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}

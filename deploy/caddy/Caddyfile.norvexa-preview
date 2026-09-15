@@ -1,0 +1,17 @@
+# Static NORVEXA showcase preview (WoodMart mirror, no checkout).
+# Served on port 80 inside the container → host :8080.
+
+:80 {
+	encode zstd gzip
+	root * /srv
+
+	@html path *.html
+	header @html Cache-Control "public, max-age=300"
+
+	@assets path /images/* /fonts/* /brand/* /assets/*
+	header @assets Cache-Control "public, max-age=86400"
+
+	file_server {
+		index index.html
+	}
+}

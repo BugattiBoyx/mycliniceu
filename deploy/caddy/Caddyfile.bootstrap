@@ -1,0 +1,28 @@
+# Bootstrap reverse proxy — works on raw IP (no domain / no TLS yet).
+# Switch to Caddyfile.single once DNS points at this box.
+
+{
+	email {$ACME_EMAIL}
+}
+
+:80 {
+	encode zstd gzip
+
+	handle /api/internal/* {
+		respond "Not Found" 404
+	}
+
+	handle {
+		reverse_proxy app:3000 {
+			header_up X-Real-IP {remote_host}
+			header_up Host {host}
+		}
+	}
+
+	log {
+		output file /var/log/caddy/bootstrap.log {
+			roll_size 50MiB
+			roll_keep 5
+		}
+	}
+}

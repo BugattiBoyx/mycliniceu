@@ -1,0 +1,70 @@
+# Storefront edge — public, disposable.
+#
+# Serves every merchant domain from one catch-all site block. Certificates are
+# issued on demand the first time a hostname is requested, and only if the app
+# confirms the hostname belongs to a live store. That is what makes a domain
+# swap after a ban a pure DNS change: no config edit, no redeploy.
+
+{
+	email {$ACME_EMAIL}
+
+	# Caddy 2.10+ dropped interval/burst here — rate limits are global now.
+	on_demand_tls {
+		ask http://app:3000/api/internal/domain-check
+	}
+
+	servers {
+		trusted_proxies static private_ranges
+	}
+}
+
+# Redirect plain HTTP to HTTPS. ACME HTTP-01 challenges are handled by Caddy
+# before this block runs.
+http:// {
+	@ipHost header_regexp Host ^([0-9]{1,3}\.){3}[0-9]{1,3}(:\d+)?$
+
+	handle @ipHost {
+		respond "Not Found" 404
+	}
+
+	redir https://{host}{uri} permanent
+}
+
+https:// {
+	tls {
+		on_demand
+	}
+
+	@ipHost header_regexp Host ^([0-9]{1,3}\.){3}[0-9]{1,3}(:\d+)?$
+
+	encode zstd gzip
+
+	handle @ipHost {
+		respond "Not Found" 404
+	}
+
+	# Internal endpoints must never be reachable from the public internet.
+	handle /api/internal/* {
+		respond "Not Found" 404
+	}
+
+	# No admin surface on customer-facing hosts. The app also enforces this
+	# via DEPLOYMENT_ROLE; this is defence in depth at the edge.
+	@adminSurface path /admin* /login* /signup* /api/auth/*
+	handle @adminSurface {
+		respond "Not Found" 404
+	}
+
+	handle {
+		reverse_proxy app:3000 {
+			header_up X-Real-IP {remote_host}
+		}
+	}
+
+	log {
+		output file /var/log/caddy/storefront.log {
+			roll_size 50MiB
+			roll_keep 5
+		}
+	}
+}
