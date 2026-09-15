@@ -11,7 +11,7 @@ set -euo pipefail
 APP_DIR="${APP_DIR:-/opt/mosmo}"
 ENV_FILE="${ENV_FILE:-deploy/env/friend-clinic.env}"
 COMPOSE_FILE="deploy/docker-compose.bootstrap.yml"
-REPO_URL="${REPO_URL:-https://github.com/dennycutler6-bit/mycliniceu.git}"
+REPO_URL="${REPO_URL:-https://github.com/BugattiBoyx/mycliniceu.git}"
 
 export DEBIAN_FRONTEND=noninteractive
 
