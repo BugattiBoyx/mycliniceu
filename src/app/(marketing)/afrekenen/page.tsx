@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CheckoutClient, type CheckoutMethod } from "@/components/mj/CheckoutClient";
+import { MJ_PHARMACY_NAME } from "@/lib/mj/brand";
 import { prisma } from "@/lib/db";
 import { ensurePaymentMethods, parseConfig } from "@/lib/payments";
 
@@ -49,7 +50,7 @@ export default async function AfrekenenPage() {
       {
         type: "bank_transfer",
         config: {
-          accountName: "The Clinic Pharmacy BV",
+          accountName: `${MJ_PHARMACY_NAME} BV`,
           iban: "NL91 ABNA 0417 1643 00",
           bic: "ABNANL2A",
           instructions: "Vermeld je bestelnummer bij de overboeking.",

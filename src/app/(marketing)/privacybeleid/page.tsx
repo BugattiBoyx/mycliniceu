@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
+import { MJ_BRAND_NAME } from "@/lib/mj/brand";
 
 export const metadata: Metadata = { title: "Privacybeleid" };
 
@@ -7,7 +8,7 @@ export default function Page() {
   return (
     <LegalPage title="Privacybeleid">
       <p>
-        The Clinic verwerkt persoonsgegevens uitsluitend voor het uitvoeren
+        {MJ_BRAND_NAME} verwerkt persoonsgegevens uitsluitend voor het uitvoeren
         van bestellingen, medische intake, klantenservice en wettelijke
         verplichtingen.
       </p>

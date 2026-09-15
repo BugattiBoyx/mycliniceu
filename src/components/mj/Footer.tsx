@@ -1,4 +1,10 @@
 import Link from "next/link";
+import {
+  MJ_BRAND_EMAIL,
+  MJ_BRAND_NAME,
+  MJ_COPYRIGHT,
+  MJ_PHARMACY_NAME,
+} from "@/lib/mj/brand";
 
 const QUICK_LINKS = [
   { href: "/", label: "Home" },
@@ -47,15 +53,15 @@ export function MjFooter() {
         <div className="mj-footer-grid">
           <div>
             <div className="mj-serif" style={{ fontSize: 22, marginBottom: 16, letterSpacing: "-0.04em" }}>
-              The Clinic
+              {MJ_BRAND_NAME}
             </div>
             <div style={{ fontSize: 13, opacity: 0.75, lineHeight: 1.8 }}>
-              Apotheek: The Clinic Pharmacy
+              Apotheek: {MJ_PHARMACY_NAME}
               <br />
               Hoofdapotheker: Mark van Dijk
               <br />
               <br />
-              info@theclinic.nl
+              {MJ_BRAND_EMAIL}
               <br />
               Industrieweg 5, 5527 AJ Hapert, Nederland
             </div>
@@ -137,7 +143,7 @@ export function MjFooter() {
             opacity: 0.55,
           }}
         >
-          <span>Copyright © The Clinic. Alle rechten voorbehouden</span>
+          <span>{MJ_COPYRIGHT}</span>
           <div style={{ display: "flex", gap: 10, opacity: 0.9 }}>
             {["iDEAL", "Bancontact", "Visa", "Mastercard", "PayPal"].map((p) => (
               <span

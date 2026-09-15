@@ -1,10 +1,12 @@
+import { MJ_BRAND_EMAIL, MJ_BRAND_NAME, MJ_COPYRIGHT } from "@/lib/mj/brand";
+
 export const site = {
-  name: "The Clinic",
-  email: "info@theclinic.nl",
+  name: MJ_BRAND_NAME,
+  email: MJ_BRAND_EMAIL,
   address: "Amsterdam, The Netherlands",
   fromPrice: 179,
   oldPrice: 249,
-  copyright: "© The Clinic. Alle rechten voorbehouden.",
+  copyright: MJ_COPYRIGHT.replace("Copyright ", "© "),
 };
 
 export const hero = {
@@ -106,7 +108,7 @@ export const pillars = [
   },
   {
     title: "25.000+ consultaties",
-    body: "The Clinic heeft meer dan 25.000 online medische consultaties verzorgd*.",
+    body: `${MJ_BRAND_NAME} heeft meer dan 25.000 online medische consultaties verzorgd*.`,
   },
 ];
 
@@ -148,7 +150,7 @@ export const faqs = [
     a: "Tijdens ons online consult via een vragenlijst komen je levensstijl, medische geschiedenis, gewicht en eventuele medicatie die je momenteel gebruikt aan bod. Het invullen hiervan zou slechts enkele minuten moeten duren.",
   },
   {
-    q: "Voor wie is het The Clinic-Afslankprogramma geschikt?",
+    q: `Voor wie is het ${MJ_BRAND_NAME}-Afslankprogramma geschikt?`,
     a: "Het Afslankprogramma is bedoeld om mensen die overgewicht of obesitas hebben te helpen een gezonder gewicht te bereiken. Onze zorgverleners beoordelen je geschiktheid individueel.",
   },
   {
@@ -161,6 +163,6 @@ export const faqs = [
   },
   {
     q: "Kan ik Saxenda of Ozempic online kopen?",
-    a: "Je kunt GLP-1 medicijnen voor gewichtsverlies kopen bij The Clinic, mits je in aanmerking komt. Vul de online vragenlijst in om te zien welke behandeling geschikt is voor jou.",
+    a: `Je kunt GLP-1 medicijnen voor gewichtsverlies kopen bij ${MJ_BRAND_NAME}, mits je in aanmerking komt. Vul de online vragenlijst in om te zien welke behandeling geschikt is voor jou.`,
   },
 ];

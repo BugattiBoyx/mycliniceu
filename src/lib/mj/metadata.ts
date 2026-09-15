@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import { MJ_BRAND_NAME } from "@/lib/mj/brand";
 
-export const MJ_SITE_NAME = "The Clinic";
+export const MJ_SITE_NAME = MJ_BRAND_NAME;
 
-export const MJ_DEFAULT_TITLE =
-  "The Clinic - Wetenschappelijk bewezen afslankbehandelingen";
+export const MJ_DEFAULT_TITLE = `${MJ_BRAND_NAME} - Wetenschappelijk bewezen afslankbehandelingen`;
 
 export const MJ_DEFAULT_DESCRIPTION =
   "Online kliniek voor gewichtsverlies. Mounjaro en Ozempic, voorgeschreven door BIG-geregistreerde Nederlandse artsen. Gratis discrete levering.";

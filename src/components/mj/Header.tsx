@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { MJ_BRAND_NAME } from "@/lib/mj/brand";
 import { useMjStore } from "@/lib/mj/store";
 
 const NAV_LINKS = [
@@ -63,7 +64,7 @@ export function MjHeader() {
       <header className={`mj-header-bar${scrolled ? " mj-header-scrolled" : ""}`}>
         <div className="mj-header-inner">
           <Link href="/" className="mj-header-logo">
-            The Clinic
+            {MJ_BRAND_NAME}
           </Link>
 
           <nav className="mj-nav-desktop">

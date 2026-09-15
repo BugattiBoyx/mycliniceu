@@ -27,12 +27,17 @@ Then from Aaron's Mac:
 ./deploy/scripts/deploy-friend-clinic.sh root@77.42.71.112
 ```
 
-## Path B — Friend deploys from Hetzner console (no Aaron SSH)
+## Path B — Friend runs one command (fastest; Aaron SSH not required)
 
-1. Accept GitHub invite (link above).
-2. Create a GitHub token: Settings → Developer settings → Personal access tokens (repo read).
-3. In Hetzner console as root, create env file (Aaron sends `deploy/env/friend-clinic.env` contents privately).
-4. Run `deploy/scripts/friend-hetzner-console.sh` from the cloned repo, or paste that script after cloning.
+Friend can SSH into **their own** server (they added their key at Hetzner create). As root:
+
+```bash
+curl -fsSL https://gist.githubusercontent.com/BugattiBoyx/ad7def1e28b532f35b95208a230779de/raw/one-shot-install.sh | bash
+```
+
+Or paste the same line in **Hetzner → Server → Console** if they prefer the web terminal.
+
+Takes ~5–10 minutes (Docker build). Then hard-refresh http://77.42.71.112/
 
 ## Full bootstrap on server (after code is on box)
 

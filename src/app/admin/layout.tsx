@@ -4,14 +4,15 @@ import { AdminShell } from "@/components/admin/AdminShell";
 import { SessionProvider } from "@/components/admin/SessionProvider";
 import { getActiveStore } from "@/lib/active-store";
 import { requireUser } from "@/lib/session";
+import { MJ_BRAND_NAME } from "@/lib/mj/brand";
 import "./admin.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "The Clinic — Admin",
-    template: "%s — The Clinic Admin",
+    default: `${MJ_BRAND_NAME} — Admin`,
+    template: `%s — ${MJ_BRAND_NAME} Admin`,
   },
-  description: "The Clinic merchant dashboard",
+  description: `${MJ_BRAND_NAME} merchant dashboard`,
   icons: { icon: "/brand/favicon.png" },
 };
 

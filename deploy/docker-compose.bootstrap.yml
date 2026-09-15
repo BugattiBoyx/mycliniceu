@@ -35,6 +35,10 @@ services:
       args:
         NEXT_PUBLIC_ROOT_DOMAIN: ${NEXT_PUBLIC_ROOT_DOMAIN}
         NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+        NEXT_PUBLIC_SITE_NAME: ${NEXT_PUBLIC_SITE_NAME:-The Clinic}
+        NEXT_PUBLIC_SITE_EMAIL: ${NEXT_PUBLIC_SITE_EMAIL:-info@theclinic.nl}
+        NEXT_PUBLIC_PHARMACY_NAME: ${NEXT_PUBLIC_PHARMACY_NAME:-}
+        NEXT_PUBLIC_COMPANY_NAME: ${NEXT_PUBLIC_COMPANY_NAME:-}
     restart: unless-stopped
     depends_on:
       db:
@@ -102,6 +106,7 @@ services:
       ADMIN_EMAIL: ${ADMIN_EMAIL}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
       ADMIN_NAME: ${ADMIN_NAME:-Owner}
+      STORE_NAME: ${STORE_NAME:-${NEXT_PUBLIC_SITE_NAME:-The Clinic}}
       SEED_DEMO_DATA: "false"
     command: sh -c "npx prisma db push --skip-generate && npx tsx prisma/seed.ts"
 

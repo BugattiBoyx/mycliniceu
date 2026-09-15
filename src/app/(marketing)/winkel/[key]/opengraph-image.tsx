@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
+import { MJ_BRAND_NAME } from "@/lib/mj/brand";
 import { getMjProduct, mjPrice } from "@/lib/mj/data";
 import { renderClinicOgImage } from "@/lib/mj/og-image";
 
 export const runtime = "edge";
-export const alt = "The Clinic product";
+export const alt = `${MJ_BRAND_NAME} product`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

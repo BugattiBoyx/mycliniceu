@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { HomeProductRow } from "@/components/mj/HomeProductRow";
 import { CountUp, ScrollLine } from "@/components/mj/Motion";
 import { FaqAccordion, Reveal } from "@/components/mj/ui";
+import { MJ_BRAND_NAME } from "@/lib/mj/brand";
 import { MJ_FAQ } from "@/lib/mj/data";
 
 const STATS = [
@@ -20,7 +21,7 @@ const STATS = [
   {
     value: "25.000+",
     label: "consultaties verzorgd",
-    source: "Sinds de start van The Clinic",
+    source: `Sinds de start van ${MJ_BRAND_NAME}`,
   },
 ];
 
@@ -190,7 +191,7 @@ export default function HomePage() {
                 margin: "0 0 22px",
               }}
             >
-              The Clinic combineert GLP-1-medicatie met begeleiding van
+              {MJ_BRAND_NAME} combineert GLP-1-medicatie met begeleiding van
               Nederlandse artsen. Online intake, recept en discrete levering.
             </p>
             <ul className="mj-clinic-checklist" style={{ marginBottom: 28 }}>
@@ -210,7 +211,7 @@ export default function HomePage() {
           <div className="mj-hero-photo">
             <Image
               src="/doctors/marieke-jansen.jpg"
-              alt="BIG-geregistreerde arts van The Clinic"
+              alt={`BIG-geregistreerde arts van ${MJ_BRAND_NAME}`}
               fill
               priority
               sizes="(max-width: 1180px) 100vw, 560px"
@@ -324,7 +325,7 @@ export default function HomePage() {
               <div style={{ display: "flex", gap: 24, marginTop: 12, flexWrap: "wrap" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--color-text-soft)" }}>
                   <span style={{ width: 16, height: 2, background: "var(--color-primary)", display: "inline-block" }} />
-                  Met The Clinic-behandeling
+                  Met {MJ_BRAND_NAME}-behandeling
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--color-text-soft)" }}>
                   <span
@@ -635,7 +636,7 @@ export default function HomePage() {
         <Reveal variant="scale">
           <div className="mj-final-cta mj-panel-deep">
             <h2 className="mj-serif" style={{ fontSize: "var(--fs-h2)", margin: "0 auto 16px", maxWidth: 640 }}>
-              Sluit je aan bij duizenden mensen die afvallen met The Clinic
+              Sluit je aan bij duizenden mensen die afvallen met {MJ_BRAND_NAME}
             </h2>
             <p style={{ fontSize: "var(--fs-body-lg)", lineHeight: "var(--lh-body)", margin: "0 auto 32px", maxWidth: 520 }}>
               Vul de vragenlijst in. Binnen 24 uur beoordeelt een BIG-geregistreerde

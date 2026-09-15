@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { MjProductImage, useMjCatalog } from "@/components/mj/Catalog";
+import { MJ_BRAND_NAME, MJ_COMPANY_NAME } from "@/lib/mj/brand";
 import { MJ_PRODUCTS, mjPrice } from "@/lib/mj/data";
 import { itemPrice, useMjStore } from "@/lib/mj/store";
 import { EmptyState } from "./ui";
@@ -828,7 +829,7 @@ export function CheckoutClient({
                           </p>
                           <LockNote>
                             Kaartgegevens worden veilig verwerkt door onze
-                            betalingsprovider. The Clinic slaat geen
+                            betalingsprovider. {MJ_BRAND_NAME} slaat geen
                             kaartgegevens op.
                           </LockNote>
                         </>
@@ -978,7 +979,7 @@ export function CheckoutClient({
                       }
                       panel={
                         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                          {row("Begunstigde", m.config.accountName || "The Clinic B.V.")}
+                          {row("Begunstigde", m.config.accountName || MJ_COMPANY_NAME)}
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 13, gap: 16 }}>
                             <span style={{ color: "var(--color-text-muted)" }}>IBAN</span>
                             <span style={{ display: "flex", alignItems: "center", gap: 10 }}>

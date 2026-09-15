@@ -48,11 +48,16 @@ async function main() {
     },
   });
 
+  const storeName =
+    process.env.STORE_NAME?.trim() ||
+    process.env.NEXT_PUBLIC_SITE_NAME?.trim() ||
+    "The Clinic";
+
   const store = await prisma.store.upsert({
     where: { slug: "moun-journey" },
-    update: { name: "The Clinic" },
+    update: { name: storeName },
     create: {
-      name: "The Clinic",
+      name: storeName,
       slug: "moun-journey",
       subdomain: "moun-journey",
       templateId: "moun-journey",

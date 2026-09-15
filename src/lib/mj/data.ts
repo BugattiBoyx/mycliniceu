@@ -1,5 +1,7 @@
-// The Clinic storefront — design-approved product data, copy and config.
+// Storefront product data, copy and config.
 // Prices mirror the database seed (source of truth at checkout is the DB).
+
+import { MJ_BRAND_NAME, mjWhatsAppMessage } from "@/lib/mj/brand";
 
 export type MjProductKey = "mounjaro" | "ozempic";
 
@@ -92,7 +94,7 @@ export function mjPrice(n: number) {
 
 export const WHATSAPP_DISPLAY = "+31 6 16739498";
 export const WHATSAPP_DIGITS = "31616739498";
-export const WHATSAPP_DEFAULT_MESSAGE = "Hallo The Clinic, ik heb een vraag.";
+export const WHATSAPP_DEFAULT_MESSAGE = mjWhatsAppMessage();
 
 export function getWhatsAppUrl(message?: string) {
   return `https://wa.me/${WHATSAPP_DIGITS}?text=${encodeURIComponent(message || WHATSAPP_DEFAULT_MESSAGE)}`;
@@ -104,7 +106,7 @@ export const MJ_FAQ = [
     a: "Tijdens ons online consult via een vragenlijst komen je levensstijl, medische geschiedenis, gewicht en eventuele medicatie die je momenteel gebruikt aan bod. Deze informatie stelt onze zorgverleners in staat om te bepalen welke behandeling geschikt is voor jou.",
   },
   {
-    q: "Voor wie is het The Clinic-Afslankprogramma geschikt?",
+    q: `Voor wie is het ${MJ_BRAND_NAME}-Afslankprogramma geschikt?`,
     a: "Het Afslankprogramma is bedoeld om mensen die overgewicht of obesitas hebben te helpen een gezonder gewicht te bereiken. Onze zorgverleners beoordelen je geschiktheid individueel en op basis van je specifieke situatie.",
   },
   {

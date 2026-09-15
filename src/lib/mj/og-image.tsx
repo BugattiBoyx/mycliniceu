@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { MJ_BRAND_NAME } from "@/lib/mj/brand";
 import { getMjSiteUrl } from "@/lib/mj/metadata";
 
 export const OG_SIZE = { width: 1200, height: 630 };
@@ -76,7 +77,7 @@ export async function renderClinicOgImage({
               letterSpacing: "-0.03em",
             }}
           >
-            The Clinic
+            {MJ_BRAND_NAME}
           </div>
           {badge ? (
             <div

@@ -1,7 +1,8 @@
+import { MJ_BRAND_NAME } from "@/lib/mj/brand";
 import { renderClinicOgImage } from "@/lib/mj/og-image";
 
 export const runtime = "edge";
-export const alt = "The Clinic — Medisch gewichtsverlies met Mounjaro en Ozempic";
+export const alt = `${MJ_BRAND_NAME} — Medisch gewichtsverlies met Mounjaro en Ozempic`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

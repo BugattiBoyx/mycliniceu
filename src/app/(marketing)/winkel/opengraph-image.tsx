@@ -1,7 +1,8 @@
+import { MJ_BRAND_NAME } from "@/lib/mj/brand";
 import { renderClinicOgImage } from "@/lib/mj/og-image";
 
 export const runtime = "edge";
-export const alt = "The Clinic — Mounjaro en Ozempic behandelingen";
+export const alt = `${MJ_BRAND_NAME} — Mounjaro en Ozempic behandelingen`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
