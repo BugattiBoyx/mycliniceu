@@ -24,12 +24,21 @@ echo "→ Syncing code to $HOST:$APP_DIR …"
 rsync -az --delete \
   --exclude node_modules --exclude .next --exclude .git \
   --exclude clone --exclude site --exclude mirror --exclude .peekaboo \
-  --exclude 'deploy/env/*.env' \
+  --exclude 'deploy/env/single.env' \
   --exclude deploy/backups \
   -e "$RSYNC_SSH" \
   "$ROOT/" "$HOST:$APP_DIR/"
 
-echo "→ Rebuilding app…"
-$RSYNC_SSH "$HOST" "cd $APP_DIR && docker compose -f $COMPOSE_FILE --env-file $ENV_FILE up -d --build app"
+if [ -f "$ROOT/$ENV_FILE" ]; then
+  echo "→ Uploading $ENV_FILE …"
+  $RSYNC_SSH "$HOST" "mkdir -p $APP_DIR/deploy/env"
+  rsync -az -e "$RSYNC_SSH" "$ROOT/$ENV_FILE" "$HOST:$APP_DIR/$ENV_FILE"
+fi
+
+echo "→ Building stack…"
+$RSYNC_SSH "$HOST" "cd $APP_DIR && docker compose -f $COMPOSE_FILE --env-file $ENV_FILE up -d --build"
+
+echo "→ Seeding (first run only; safe to re-run)…"
+$RSYNC_SSH "$HOST" "cd $APP_DIR && docker compose -f $COMPOSE_FILE --env-file $ENV_FILE --profile setup run --rm seed" || true
 
 echo "→ Done. Hard-refresh http://<server-ip>/ in the browser."
